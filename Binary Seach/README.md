@@ -12,6 +12,7 @@ This repository contains implementations of:
 - Search in Rotated Sorted Array (no duplicates)
 - Search in Rotated Sorted Array II (with duplicates)
 - Find Minimum in Rotated Sorted Array
+- Find Rotation Count in Rotated Sorted Array
 
 ---
 
@@ -126,7 +127,6 @@ Step 1: mid=3 → arr[mid]=0 ✅ Found
 
 ---
 
-
 ## 📌 Find Minimum in Rotated Sorted Array (Without Duplicates)
 
 **Problem:**  
@@ -136,9 +136,9 @@ The task is to find the **minimum element**.
 ---
 
 ### ⚡ Approach
-- If `arr[mid] > arr[high]` → Minimum lies in the **right half** → `low = mid + 1`.  
-- Else → Minimum lies in the **left half (including mid)** → `high = mid`.  
 
+- If `arr[mid] > arr[high]` → Minimum lies in the **right half** → `low = mid + 1`.
+- Else → Minimum lies in the **left half (including mid)** → `high = mid`.
 
 Example:
 
@@ -157,8 +157,9 @@ Minimum element = 0
 ---
 
 ### ⏱ Complexity
-- **Time:** O(log n)  
-- **Space:** O(1)  
+
+- **Time:** O(log n)
+- **Space:** O(1)
 
 ---
 
@@ -171,6 +172,7 @@ Minimum element = 0
 | Search in Rotated Sorted Array       | O(log n)        | O(1)             |
 | Search in Rotated Sorted Array II    | O(log n) ~ O(n) | O(1)             |
 | Find Minimum in Rotated Sorted Array | O(log n)        | O(1)             |
+| Find Rotation Count                  | O(log n)        | O(1)             |
 
 ---
 
@@ -216,6 +218,7 @@ int main() {
 - [Search in Rotated Sorted Array - LeetCode](https://leetcode.com/problems/search-in-rotated-sorted-array/)
 - [Search in Rotated Sorted Array II - LeetCode](https://leetcode.com/problems/search-in-rotated-sorted-array-ii/)
 - [Find Minimum in Rotated Sorted Array - LeetCode](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/)
+- [Find Rotation Count - GeeksforGeeks](https://www.geeksforgeeks.org/dsa/find-rotation-count-rotated-sorted-array/)
 
 ---
 
