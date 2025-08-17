@@ -13,6 +13,7 @@ This repository contains implementations of:
 - Search in Rotated Sorted Array II (with duplicates)
 - Find Minimum in Rotated Sorted Array
 - Find Rotation Count in Rotated Sorted Array
+- Single Element in a Sorted Array
 
 ---
 
@@ -163,6 +164,54 @@ Minimum element = 0
 
 ---
 
+## 📌 Single Element in a Sorted Array
+
+**Problem:**  
+You are given a **sorted array** where every element appears **twice**, except one element which appears **only once**.  
+Find that single element.
+
+```
+Example:
+Input: [1,1,2,3,3,4,4,8,8]
+Output: 2
+
+---
+
+### ⚡ Approach
+
+- Use **binary search** to find the unique element.
+- Key observation:
+  - If `mid` is even → its duplicate should be at `mid+1`.
+  - If `mid` is odd → its duplicate should be at `mid-1`.
+- Otherwise, the unique element lies in the **other half**.
+
+
+---
+
+### 🔎 Dry Run
+
+Array: [1, 1, 2, 3, 3, 4, 4, 8, 8]
+
+Step 1: low=1, high=7 → mid=4 → arr[mid]=3
+arr[mid]==arr[mid-1] and mid is even → Wrong pairing → search left half
+high=3
+
+Step 2: low=1, high=3 → mid=2 → arr[mid]=2
+arr[mid]!=arr[mid-1] && arr[mid]!=arr[mid+1] → ✅ Found single element
+
+Answer = 2
+
+```
+
+---
+
+### ⏱ Complexity
+
+- **Time:** O(log n)
+- **Space:** O(1)
+
+---
+
 ## 📌 Time & Space Complexity
 
 | Algorithm                            | Time Complexity | Space Complexity |
@@ -173,6 +222,7 @@ Minimum element = 0
 | Search in Rotated Sorted Array II    | O(log n) ~ O(n) | O(1)             |
 | Find Minimum in Rotated Sorted Array | O(log n)        | O(1)             |
 | Find Rotation Count                  | O(log n)        | O(1)             |
+| Single Element in Sorted Array       | O(log n)        | O(1)             |
 
 ---
 
@@ -219,6 +269,7 @@ int main() {
 - [Search in Rotated Sorted Array II - LeetCode](https://leetcode.com/problems/search-in-rotated-sorted-array-ii/)
 - [Find Minimum in Rotated Sorted Array - LeetCode](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/)
 - [Find Rotation Count - GeeksforGeeks](https://www.geeksforgeeks.org/dsa/find-rotation-count-rotated-sorted-array/)
+- [Single Element in a Sorted Array - LeetCode](https://leetcode.com/problems/single-element-in-a-sorted-array/)
 
 ---
 
