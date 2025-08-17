@@ -212,6 +212,61 @@ Answer = 2
 
 ---
 
+## 📌 Find Peak Element
+
+**Problem:**  
+A **peak element** is an element that is strictly greater than its neighbors.  
+Given an integer array `nums`, find a peak element and return its index.  
+If the array contains multiple peaks, return the index to **any one of the peaks**.
+
+You may imagine that `nums[-1] = nums[n] = -∞`.
+
+```
+
+Example:
+Input: [1,2,1,3,5,6,4]
+Output: 5 // nums[5] = 6 is a peak
+
+
+### ⚡ Approach
+
+- Handle base cases:
+  - If array size = 1 → return index `0`.
+  - If first element > second → return index `0`.
+  - If last element > second last → return `n-1`.
+- Otherwise use **binary search** between `1` and `n-2`:
+  - If `nums[mid] > nums[mid-1] && nums[mid] > nums[mid+1]` → return `mid`.
+  - If slope is **increasing** (`nums[mid] > nums[mid-1]`) → move right.
+  - Else → move left.
+
+---
+
+### 🔎 Dry Run
+
+Array: [1, 2, 1, 3, 5, 6, 4]
+
+Step 1: low=1, high=5 → mid=3 → nums[3]=3
+Neighbors: nums[2]=1, nums[4]=5 → not a peak, slope increasing → move right
+
+Step 2: low=4, high=5 → mid=4 → nums[4]=5
+Neighbors: nums[3]=3, nums[5]=6 → not a peak, slope increasing → move right
+
+Step 3: low=5, high=5 → mid=5 → nums[5]=6
+Neighbors: nums[4]=5, nums[6]=4 → ✅ peak found
+
+Answer = 5
+
+```
+
+---
+
+### ⏱ Complexity
+
+- **Time:** O(log n)
+- **Space:** O(1)
+
+---
+
 ## 📌 Time & Space Complexity
 
 | Algorithm                            | Time Complexity | Space Complexity |
@@ -223,6 +278,7 @@ Answer = 2
 | Find Minimum in Rotated Sorted Array | O(log n)        | O(1)             |
 | Find Rotation Count                  | O(log n)        | O(1)             |
 | Single Element in Sorted Array       | O(log n)        | O(1)             |
+| Find Peak Element                    | O(log n)        | O(1)             |
 
 ---
 
