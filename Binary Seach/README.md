@@ -326,6 +326,7 @@ int main() {
 - [Find Minimum in Rotated Sorted Array - LeetCode](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/)
 - [Find Rotation Count - GeeksforGeeks](https://www.geeksforgeeks.org/dsa/find-rotation-count-rotated-sorted-array/)
 - [Single Element in a Sorted Array - LeetCode](https://leetcode.com/problems/single-element-in-a-sorted-array/)
+- [Sqrt(x) - LeetCode](https://leetcode.com/problems/sqrtx/)
 
 ---
 
