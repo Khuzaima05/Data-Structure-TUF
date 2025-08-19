@@ -328,7 +328,7 @@ int main() {
 - [Single Element in a Sorted Array - LeetCode](https://leetcode.com/problems/single-element-in-a-sorted-array/)
 - [Sqrt(x) - LeetCode](https://leetcode.com/problems/sqrtx/)
 - [Nth Root of M - GeeksforGeeks](https://www.geeksforgeeks.org/dsa/n-th-root-number/)
-
+- [Koko Eating Bananas - LeetCode](https://leetcode.com/problems/koko-eating-bananas/)
 ---
 
 ✨ With binary search, you don’t check all elements → you **divide and conquer** until the target is found (or not found).
