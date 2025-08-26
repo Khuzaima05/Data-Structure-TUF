@@ -1,4 +1,4 @@
-name: C++ Build and Run
+name: C++ Build, Run & Format Check
 
 on: [push, pull_request]
 
@@ -10,17 +10,37 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Install g++
-        run: sudo apt-get install -y g++
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y g++ clang-format
 
+      # 🔹 Step 1: Check formatting of all C++ files
+      - name: Check C++ formatting
+        run: |
+          echo "Checking formatting..."
+          clang-format -n Binary\ Seach/*.cpp || true
+          echo "Formatting check complete."
+
+      # 🔹 Step 2: Compile and run files (with test case check if .in/.out exist)
       - name: Compile and Run C++ Files
         run: |
           for file in Binary\ Seach/*.cpp; do
             if grep -q "int main" "$file"; then
+              name=$(basename "$file" .cpp)
               echo "Compiling $file..."
               g++ "$file" -o program
               echo "Running $file..."
-              ./program || true
+              if [[ -f "Binary Seach/$name.in" && -f "Binary Seach/$name.out" ]]; then
+                ./program < "Binary Seach/$name.in" > result.txt
+                if diff -q result.txt "Binary Seach/$name.out"; then
+                  echo "✅ $name passed test"
+                else
+                  echo "❌ $name failed test"
+                fi
+              else
+                ./program || true
+              fi
               echo "--------------------------------------"
             else
               echo "Skipping $file (no main function)"
