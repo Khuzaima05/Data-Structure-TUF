@@ -16,9 +16,13 @@ jobs:
       - name: Compile and Run C++ Files
         run: |
           for file in Binary\ Seach/*.cpp; do
-            echo "Compiling $file..."
-            g++ "$file" -o program
-            echo "Running $file..."
-            ./program || true   # run program, don't fail workflow if exit code != 0
-            echo "--------------------------------------"
+            if grep -q "int main" "$file"; then
+              echo "Compiling $file..."
+              g++ "$file" -o program
+              echo "Running $file..."
+              ./program || true
+              echo "--------------------------------------"
+            else
+              echo "Skipping $file (no main function)"
+            fi
           done
