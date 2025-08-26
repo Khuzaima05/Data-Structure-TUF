@@ -15,14 +15,25 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y g++ clang-format
 
-      # 🔹 Step 1: Check formatting of all C++ files
-      - name: Check C++ formatting
+      # 🔹 Step 1: Auto-format all C++ files
+      - name: Auto-format C++ files
+        run: |
+          echo "Auto-formatting files..."
+          find "Binary Seach" -name "*.cpp" -exec clang-format -i {} \;
+          echo "Formatting complete."
+
+      # 🔹 Step 2: Fail if formatting changes are needed
+      - name: Verify formatting
         run: |
           echo "Checking formatting..."
-          clang-format -n Binary\ Seach/*.cpp || true
-          echo "Formatting check complete."
+          if ! git diff --exit-code; then
+            echo "❌ Code was not properly formatted. Please run clang-format."
+            exit 1
+          else
+            echo "✅ Formatting is correct."
+          fi
 
-      # 🔹 Step 2: Compile and run files (with test case check if .in/.out exist)
+      # 🔹 Step 3: Compile and run files (with test case check if .in/.out exist)
       - name: Compile and Run C++ Files
         run: |
           for file in Binary\ Seach/*.cpp; do
@@ -37,6 +48,7 @@ jobs:
                   echo "✅ $name passed test"
                 else
                   echo "❌ $name failed test"
+                  exit 1
                 fi
               else
                 ./program || true
